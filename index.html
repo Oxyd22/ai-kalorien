@@ -101,6 +101,28 @@
       text-align: center; color: var(--muted); max-width: 36em;
       margin: 0 auto 40px; font-size: 1.05rem;
     }
+
+    .grid-5 {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media (max-width: 1100px) { .grid-5 { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) { .grid-5 { grid-template-columns: 1fr; } }
+    .tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      color: var(--blue); background: var(--blue-soft);
+      padding: 2px 8px; border-radius: 980px; vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+    .tag.exact { color: var(--green); background: rgba(48,209,88,0.15); }
+    .usecase {
+      margin-top: 12px !important; padding-top: 12px;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.88rem !important;
+    }
+    .health-note { margin-top: 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start; }
+    .health-note .icon { grid-row: 1 / span 2; }
+    .health-note h3 { margin: 0; }
     .grid-4 {
       display: grid; gap: 16px;
       grid-template-columns: repeat(4, 1fr);
@@ -201,48 +223,64 @@
       <div class="eyebrow">Kostenloser Apple-Kurzbefehl · v3</div>
       <h1>Kalorien tracken.<br />Ohne App-Abo. Ohne Datenkrake.</h1>
       <p class="hero-lead">
-        Foto, Barcode oder Nährwert-Etikett — und der Eintrag landet in <strong style="color:var(--fg)">Apple Health</strong>.
+        Kamera, Mediathek, Text, Barcode oder Etikett — und der Eintrag landet in <strong style="color:var(--fg)">Apple Health</strong>.
         Kein Account. Keine Tracker-Cloud von uns. Nur Orientierung — lokal auf deinem iPhone.
       </p>
       <div class="hero-actions">
         <a class="btn" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Kostenlos hinzufügen</a>
-        <a class="btn ghost" href="#vergleich">Vergleich ansehen</a>
+        <a class="btn ghost" href="#eingaben">Eingaben ansehen</a>
       </div>
       <div class="pills">
-        <span class="pill">📷 AI-Foto</span>
+        <span class="pill">📷 Kamera (AI)</span>
+        <span class="pill">🖼️ Fotobibliothek (AI)</span>
+        <span class="pill">✍️ Text (AI)</span>
         <span class="pill">🛒 Barcode</span>
-        <span class="pill">🏷️ Etikett-OCR</span>
+        <span class="pill">🏷️ Etikett</span>
         <span class="pill">❤️ Apple Health</span>
-        <span class="pill">🔒 Kein Account</span>
       </div>
     </div>
   </header>
 
-  <section>
+  <section id="eingaben">
     <div class="wrap">
-      <h2>Vier Wege. Ein Tipp.</h2>
-      <p class="section-lead">Wähle, was gerade am schnellsten ist — der Kurzbefehl holt kcal und Makros und sagt dir, ob’s noch ins Tagesziel passt.</p>
-      <div class="grid-4">
+      <h2>Fünf Eingaben. Ein Flow.</h2>
+      <p class="section-lead">Drei Wege mit Apple Intelligence, zwei exakte Wege ohne Raten — plus Eintrag in Apple Health.</p>
+      <div class="grid-5">
         <div class="card">
           <div class="icon">📷</div>
-          <h3>AI-Foto-Scan</h3>
-          <p>Teller knipsen. Apple Intelligence schätzt Mahlzeit, kcal und Makros — mit Portions-Logik statt Wunschdenken.</p>
+          <h3>Kamera <span class="tag">AI</span></h3>
+          <p>Frisch gekocht oder Restaurant-Teller: einmal knipsen, fertig.</p>
+          <p class="usecase"><strong>Use-Case:</strong> Mittagessen im Café — kein Barcode, keine Lust zu tippen. Foto vom Teller, Schätzung + Ampel, eintragen.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🖼️</div>
+          <h3>Fotobibliothek <span class="tag">AI</span></h3>
+          <p>Später nachziehen, was du schon fotografiert hast.</p>
+          <p class="usecase"><strong>Use-Case:</strong> Abends die Stories vom Brunch aus der Mediathek wählen und den Tag nachträglich loggen.</p>
+        </div>
+        <div class="card">
+          <div class="icon">✍️</div>
+          <h3>Nur Text <span class="tag">AI</span></h3>
+          <p>Beschreiben statt knipsen — schnell und diskret.</p>
+          <p class="usecase"><strong>Use-Case:</strong> Im Meeting nur „2 Espresso und ein Croissant“ tippen, ohne die Kamera zu zücken.</p>
         </div>
         <div class="card">
           <div class="icon">🛒</div>
-          <h3>Barcode</h3>
-          <p>Scan → Open Food Facts → Herstellerwerte × deine Gramm. Kein LLM, keine Rate-Orgie bei Fertigprodukten.</p>
+          <h3>Barcode <span class="tag exact">exakt</span></h3>
+          <p>Herstellerwerte von Open Food Facts × deine Gramm — ohne LLM.</p>
+          <p class="usecase"><strong>Use-Case:</strong> Joghurt aus dem Kühlschrank scannen, 150 g angeben, exakte Makros statt Foto-Schätzung.</p>
         </div>
         <div class="card">
           <div class="icon">🏷️</div>
-          <h3>Etikett-Scan</h3>
-          <p>Nährwerttabelle fotografieren. OCR on-device, Werte pro 100 g extrahieren, Portion sauber ausrechnen.</p>
+          <h3>Etikett <span class="tag exact">exakt</span></h3>
+          <p>Nährwerttabelle fotografieren, OCR + Portion rechnen.</p>
+          <p class="usecase"><strong>Use-Case:</strong> Import-Snack ohne Barcode-Treffer — Etikett knipsen, 40 g Portion, Werte aus der Tabelle.</p>
         </div>
-        <div class="card">
-          <div class="icon">❤️</div>
-          <h3>Apple Health</h3>
-          <p>Eintragen schreibt Calories, Protein, Fett, Kohlenhydrate und Ballaststoffe — dort, wo deine Daten sowieso leben.</p>
-        </div>
+      </div>
+      <div class="card health-note">
+        <div class="icon">❤️</div>
+        <h3>Danach: Apple Health</h3>
+        <p>Egal welcher Eingabeweg — nach dem Review landen Calories, Protein, Fett, Kohlenhydrate und Ballaststoffe in Health. Tagesstand und Rest-kcal siehst du im Abschluss.</p>
       </div>
     </div>
   </section>
