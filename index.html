@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,11 +9,23 @@
   <meta property="og:description" id="og-desc" content="" />
   <link rel="preconnect" href="https://www.icloud.com" />
   <style>
-    :root {
-      --bg: #000; --bg-card: #1c1c1e; --bg-card-2: #2c2c2e;
+    :root, [data-theme="dark"] {
+      --bg: #000; --bg-elevated: #0a0a0a; --bg-card: #1c1c1e; --bg-card-2: #2c2c2e;
       --fg: #f5f5f7; --muted: #a1a1a6; --blue: #2997ff;
       --blue-soft: rgba(41,151,255,.15); --green: #30d158;
-      --hairline: rgba(255,255,255,.12); --radius: 22px; --max: 980px;
+      --hairline: rgba(255,255,255,.12); --nav-bg: rgba(0,0,0,.72);
+      --hero-glow: rgba(41,151,255,.28); --cta-glow: rgba(41,151,255,.22);
+      --table-hi: rgba(41,151,255,.08); --fine: #6e6e73;
+      --shot-shadow: rgba(0,0,0,.45); --radius: 22px; --max: 980px;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f7; --bg-elevated: #fff; --bg-card: #fff; --bg-card-2: #f0f0f2;
+      --fg: #1d1d1f; --muted: #6e6e73; --blue: #0071e3;
+      --blue-soft: rgba(0,113,227,.12); --green: #248a3d;
+      --hairline: rgba(0,0,0,.1); --nav-bg: rgba(245,245,247,.82);
+      --hero-glow: rgba(0,113,227,.14); --cta-glow: rgba(0,113,227,.12);
+      --table-hi: rgba(0,113,227,.08); --fine: #86868b;
+      --shot-shadow: rgba(0,0,0,.12);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -29,7 +41,7 @@
     nav {
       position: sticky; top: 0; z-index: 20;
       backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(0,0,0,.72); border-bottom: 1px solid var(--hairline);
+      background: var(--nav-bg); border-bottom: 1px solid var(--hairline);
     }
     nav .inner {
       max-width: var(--max); margin: 0 auto; padding: 12px 22px;
@@ -37,15 +49,16 @@
     }
     nav .brand { font-weight: 600; font-size: 15px; color: var(--fg); text-decoration: none; }
     nav .right { display: flex; align-items: center; gap: 14px; }
-    .lang {
+    .lang, .theme {
       display: inline-flex; border: 1px solid var(--hairline); border-radius: 980px; overflow: hidden;
       font-size: 12px; font-weight: 600;
     }
-    .lang button {
+    .lang button, .theme button {
       background: transparent; border: 0; color: var(--muted); padding: 6px 11px;
-      cursor: pointer; font: inherit; font-weight: 600;
+      cursor: pointer; font: inherit; font-weight: 600; line-height: 1;
     }
-    .lang button.active { background: var(--bg-card-2); color: var(--fg); }
+    .lang button.active, .theme button.active { background: var(--bg-card-2); color: var(--fg); }
+    .theme button { font-size: 14px; padding: 5px 10px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       background: var(--blue); color: #fff !important; font-weight: 600;
@@ -57,7 +70,7 @@
     .btn.sm { padding: 8px 14px; font-size: 13px; }
     .hero {
       padding: 72px 0 48px; text-align: center;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41,151,255,.28), transparent 60%), #000;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, var(--hero-glow), transparent 60%), var(--bg);
     }
     .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
     h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; margin: 0 0 18px; }
@@ -66,7 +79,7 @@
     .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .pill { font-size: 13px; color: var(--muted); background: var(--bg-card); border: 1px solid var(--hairline); padding: 6px 12px; border-radius: 980px; }
     section { padding: 72px 0; }
-    section.alt { background: #0a0a0a; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+    section.alt { background: var(--bg-elevated); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
     h2 { font-size: clamp(1.75rem, 3.5vw, 2.35rem); font-weight: 700; letter-spacing: -.03em; margin: 0 0 12px; text-align: center; }
     .section-lead { text-align: center; color: var(--muted); max-width: 36em; margin: 0 auto 40px; font-size: 1.05rem; }
     .grid-5 { display: grid; gap: 16px; grid-template-columns: repeat(5, 1fr); }
@@ -85,7 +98,7 @@
     .shots { display: grid; gap: 14px; grid-template-columns: repeat(4, 1fr); }
     @media (max-width: 800px) { .shots { grid-template-columns: 1fr 1fr; } }
     .shots figure { margin: 0; }
-    .shots img { width: 100%; border-radius: 18px; display: block; border: 1px solid var(--hairline); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+    .shots img { width: 100%; border-radius: 18px; display: block; border: 1px solid var(--hairline); box-shadow: 0 20px 50px var(--shot-shadow); }
     .shots figcaption { text-align: center; font-size: 12px; color: var(--muted); margin-top: 8px; }
     .split { display: grid; gap: 28px; align-items: start; grid-template-columns: 1fr 1fr; }
     @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
@@ -100,7 +113,7 @@
     table.compare { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hairline); }
     table.compare th, table.compare td { padding: 14px 12px; text-align: left; border-bottom: 1px solid var(--hairline); vertical-align: top; }
     table.compare th { background: var(--bg-card-2); font-weight: 600; font-size: .85rem; color: var(--muted); }
-    table.compare th.highlight, table.compare td.highlight { background: rgba(41,151,255,.08); }
+    table.compare th.highlight, table.compare td.highlight { background: var(--table-hi); }
     table.compare td.highlight { color: var(--fg); font-weight: 500; }
     table.compare tr:last-child td { border-bottom: none; }
     .check { color: var(--green); }
@@ -108,8 +121,8 @@
     .who { display: grid; gap: 12px; grid-template-columns: 1fr 1fr 1fr; }
     @media (max-width: 700px) { .who { grid-template-columns: 1fr; } }
     .who .card h3 { font-size: .95rem; color: var(--blue); }
-    .cta-band { text-align: center; padding: 64px 22px; background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(41,151,255,.22), transparent 55%), #000; }
-    .fine { font-size: 12px; color: #6e6e73; max-width: 40em; margin: 16px auto 0; }
+    .cta-band { text-align: center; padding: 64px 22px; background: radial-gradient(ellipse 70% 80% at 50% 100%, var(--cta-glow), transparent 55%), var(--bg); }
+    .fine { font-size: 12px; color: var(--fine); max-width: 40em; margin: 16px auto 0; }
     footer { padding: 36px 22px 48px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--hairline); }
   </style>
 </head>
@@ -121,6 +134,10 @@
         <div class="lang" role="group" aria-label="Language">
           <button type="button" id="btn-de" class="active" onclick="setLang('de')">DE</button>
           <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+        <div class="theme" role="group" aria-label="Theme">
+          <button type="button" id="btn-theme-dark" class="active" onclick="setTheme('dark')" title="Dark">☾</button>
+          <button type="button" id="btn-theme-light" onclick="setTheme('light')" title="Light">☀</button>
         </div>
         <a class="btn sm" data-i18n="nav_cta" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Get Shortcut</a>
       </div>
@@ -635,14 +652,29 @@
     try { localStorage.setItem('ai-kalorien-lang', lang); } catch (e) {}
   }
 
+  function setTheme(theme) {
+    const t = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    const bd = document.getElementById('btn-theme-dark');
+    const bl = document.getElementById('btn-theme-light');
+    if (bd) bd.classList.toggle('active', t === 'dark');
+    if (bl) bl.classList.toggle('active', t === 'light');
+    try { localStorage.setItem('ai-kalorien-theme', t); } catch (e) {}
+  }
+
   (function init() {
     let lang = 'de';
+    let theme = 'dark';
     try {
       const saved = localStorage.getItem('ai-kalorien-lang');
       if (saved === 'en' || saved === 'de') lang = saved;
       else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) lang = 'en';
+      const savedTheme = localStorage.getItem('ai-kalorien-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme;
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
     } catch (e) {}
     setLang(lang);
+    setTheme(theme);
   })();
   </script>
 </body>
