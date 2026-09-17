@@ -73,6 +73,14 @@
       background: radial-gradient(ellipse 80% 50% at 50% -10%, var(--hero-glow), transparent 60%), var(--bg);
     }
     .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    .platform-badge {
+      display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+      margin: 0 auto 18px; padding: 8px 14px; border-radius: 980px;
+      background: var(--bg-card); border: 1px solid var(--hairline);
+      font-size: 13px; font-weight: 600; color: var(--fg);
+    }
+    .platform-badge .sep { color: var(--muted); font-weight: 400; }
+    .platform-badge .req { color: var(--muted); font-weight: 500; font-size: 12px; }
     h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; margin: 0 0 18px; }
     .hero-lead { font-size: clamp(1.15rem, 2.4vw, 1.35rem); color: var(--muted); max-width: 34em; margin: 0 auto 28px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 36px; }
@@ -139,7 +147,7 @@
           <button type="button" id="btn-theme-dark" class="active" onclick="setTheme('dark')" title="Dark">☾</button>
           <button type="button" id="btn-theme-light" onclick="setTheme('light')" title="Light">☀</button>
         </div>
-        <a class="btn sm" data-i18n="nav_cta" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Get Shortcut</a>
+        <a class="btn sm" data-i18n="nav_cta" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Get iOS Shortcut</a>
       </div>
     </div>
   </nav>
@@ -147,10 +155,15 @@
   <header class="hero">
     <div class="wrap">
       <div class="eyebrow" data-i18n="eyebrow">Free Apple Shortcut · v3</div>
+      <div class="platform-badge" role="status">
+        <span data-i18n="plat_main">iOS Shortcut</span>
+        <span class="sep">·</span>
+        <span class="req" data-i18n="plat_req">Shortcuts app · iPhone / iPad</span>
+      </div>
       <h1 data-i18n-html="hero_title">Track calories.<br />No app subscription. No data vacuum.</h1>
       <p class="hero-lead" data-i18n-html="hero_lead">Camera, Photo Library, Text, Barcode, or Label — then log to <strong style="color:var(--fg)">Apple Health</strong>. No account. No tracker cloud from us.</p>
       <div class="hero-actions">
-        <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add for free</a>
+        <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add iOS Shortcut</a>
         <a class="btn ghost" data-i18n="cta_secondary" href="#eingaben">See inputs</a>
       </div>
       <div class="pills">
@@ -426,7 +439,7 @@
   <div class="cta-band">
     <h2 data-i18n="cta_title">Ready to try?</h2>
     <p class="section-lead" style="margin-bottom:24px;" data-i18n="cta_sub">iPhone or iPad · Shortcuts app · one tap.</p>
-    <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add AI Kalorien v3</a>
+    <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add iOS Shortcut</a>
     <p class="fine" data-i18n="cta_fine">Guidance only. Not nutrition or medical advice. Estimates can be off — barcode &amp; label are more precise for packaged food.</p>
   </div>
 
@@ -438,14 +451,16 @@
   <script>
   const I18N = {
     de: {
-      doc_title: "AI Kalorien — Kostenloser Kurzbefehl für Apple Health",
-      meta_desc: "Kamera, Mediathek, Text, Barcode oder Etikett → kcal & Makros. Coaching. Apple Health. Kein Account, keine Tracker-Cloud.",
-      og_desc: "Der Kalorien-Tracker ohne App-Abo und ohne Datenkrake — als Apple-Kurzbefehl.",
-      nav_cta: "Kurzbefehl holen",
-      eyebrow: "Kostenloser Apple-Kurzbefehl · v3",
+      doc_title: "AI Kalorien — Kostenloser iOS-Kurzbefehl für Apple Health",
+      meta_desc: "Kostenloser iOS-Kurzbefehl: Kamera, Mediathek, Text, Barcode oder Etikett → kcal & Makros. Apple Health. Kein Account, keine Tracker-Cloud.",
+      og_desc: "Der Kalorien-Tracker ohne App-Abo — als kostenloser iOS-Kurzbefehl für Apple Shortcuts.",
+      nav_cta: "iOS-Kurzbefehl holen",
+      eyebrow: "Kostenlos · iOS-Kurzbefehl · v3",
+      plat_main: "iOS-Kurzbefehl (Apple Shortcuts)",
+      plat_req: "App „Kurzbefehle“ · iPhone / iPad",
       hero_title: "Kalorien tracken.<br />Ohne App-Abo. Ohne Datenkrake.",
-      hero_lead: "Kamera, Mediathek, Text, Barcode oder Etikett — und der Eintrag landet in <strong style=\"color:var(--fg)\">Apple Health</strong>. Kein Account. Keine Tracker-Cloud von uns.",
-      cta_primary: "Kostenlos hinzufügen",
+      hero_lead: "Kein App-Store-Download: ein <strong style=\"color:var(--fg)\">iOS-Kurzbefehl</strong> für die App „Kurzbefehle“. Kamera, Mediathek, Text, Barcode oder Etikett — Eintrag in <strong style=\"color:var(--fg)\">Apple Health</strong>. Kein Account. Keine Tracker-Cloud von uns.",
+      cta_primary: "iOS-Kurzbefehl hinzufügen",
       cta_secondary: "Eingaben ansehen",
       pill_cam: "📷 Kamera (AI)", pill_lib: "🖼️ Fotobibliothek (AI)", pill_text: "✍️ Text (AI)",
       pill_bar: "🛒 Barcode", pill_lab: "🏷️ Etikett", pill_health: "❤️ Apple Health",
@@ -469,7 +484,7 @@
       health_h: "Danach: Apple Health",
       health_p: "Egal welcher Eingabeweg — nach dem Review landen Calories, Protein, Fett, Kohlenhydrate und Ballaststoffe in Health. Tagesstand und Rest-kcal siehst du im Abschluss.",
       shots_title: "So fühlt sich’s an",
-      shots_lead: "Vom Menü bis „Eingetragen“ — ohne App-Store-Riesen und ohne Login-Wall.",
+      shots_lead: "Vom Menü in der Kurzbefehle-App bis „Eingetragen“ — kein App-Store-Download, keine Login-Wall.",
       cap1: "Menü: Foto · Text · Barcode · Etikett",
       cap2: "Oder einfach beschreiben",
       cap3: "Review + Ampel + Korrigieren",
@@ -498,7 +513,7 @@
       cmp_appctx: "App-Kontext", cmp_rare: "selten Fokus", cmp_core: "Kern-Pfad", cmp_opt: "oft optional",
       cmp_notpitch: "nicht der Pitch", cmp_nodata: "Nein (kein unser Account)", cmp_cloud: "Ja (Cloud-Profil)",
       cmp_cloud2: "Ja (Cloud + Community)", cmp_cloud3: "Ja (Coaching-Programm)", cmp_content: "Content / Community",
-      cmp_community: "Community", cmp_humancoach: "Ja (Kernprodukt)", cmp_shortcut: "Ein Kurzbefehl", cmp_onboard: "App + Onboarding",
+      cmp_community: "Community", cmp_humancoach: "Ja (Kernprodukt)", cmp_shortcut: "Ein iOS-Kurzbefehl", cmp_onboard: "App + Onboarding",
       cmp_fine: "Stand Orientierung 2026. Features der Apps ändern sich; AI Kalorien ersetzt keine medizinische Beratung und kein Krankenkassen-Programm.",
       learn_title: "Lernprozess der AI",
       learn_lead: "Der Prompt ist nicht „irgendwie ChatGPT“. Er wurde gegen echte Mahlzeiten und ein Buddy-Benchmark geschärft.",
@@ -528,20 +543,22 @@
       hood_4: "<strong style=\"color:var(--fg)\">Guard</strong> bei 0 kcal — kein Blind-Log",
       hood_5: "<strong style=\"color:var(--fg)\">Fünf Health-Samples</strong> + Tages-Summary",
       cta_title: "Bereit zum Ausprobieren?",
-      cta_sub: "iPhone oder iPad · Kurzbefehle-App · ein Tipp.",
+      cta_sub: "Nur iOS: iPhone oder iPad · App „Kurzbefehle“ · ein Tipp.",
       cta_fine: "Nur Orientierungshilfe. Keine Ernährungs- oder Medizinberatung. Schätzungen können abweichen — Barcode & Etikett sind für Verpacktes präziser.",
       footer_1: "Von Daniel Riewe · <a href=\"https://github.com/Oxyd22/ai-kalorien\">GitHub</a>",
-      footer_2: "Kein Account · Kein Abo · Daten in Apple Health"
+      footer_2: "iOS-Kurzbefehl · Kein Account · Kein Abo · Daten in Apple Health"
     },
     en: {
-      doc_title: "AI Kalorien — Free Apple Shortcut for Health",
-      meta_desc: "Camera, Photo Library, Text, Barcode, or Label → kcal & macros. Coaching. Apple Health. No account, no tracker cloud.",
-      og_desc: "Calorie tracking without an app subscription or a data vacuum — as an Apple Shortcut.",
-      nav_cta: "Get Shortcut",
-      eyebrow: "Free Apple Shortcut · v3",
+      doc_title: "AI Kalorien — Free iOS Shortcut for Apple Health",
+      meta_desc: "Free iOS Shortcut: Camera, Photo Library, Text, Barcode, or Label → kcal & macros. Apple Health. No account, no tracker cloud.",
+      og_desc: "Calorie tracking without an app subscription — as a free iOS Shortcut for Apple Shortcuts.",
+      nav_cta: "Get iOS Shortcut",
+      eyebrow: "Free · iOS Shortcut · v3",
+      plat_main: "iOS Shortcut (Apple Shortcuts)",
+      plat_req: "Shortcuts app · iPhone / iPad",
       hero_title: "Track calories.<br />No app subscription. No data vacuum.",
-      hero_lead: "Camera, Photo Library, Text, Barcode, or Label — then it lands in <strong style=\"color:var(--fg)\">Apple Health</strong>. No account. No tracker cloud from us.",
-      cta_primary: "Add for free",
+      hero_lead: "Not an App Store app: an <strong style=\"color:var(--fg)\">iOS Shortcut</strong> for the Shortcuts app. Camera, Photo Library, Text, Barcode, or Label — then <strong style=\"color:var(--fg)\">Apple Health</strong>. No account. No tracker cloud from us.",
+      cta_primary: "Add iOS Shortcut",
       cta_secondary: "See inputs",
       pill_cam: "📷 Camera (AI)", pill_lib: "🖼️ Photo Library (AI)", pill_text: "✍️ Text (AI)",
       pill_bar: "🛒 Barcode", pill_lab: "🏷️ Label", pill_health: "❤️ Apple Health",
@@ -565,7 +582,7 @@
       health_h: "Then: Apple Health",
       health_p: "Any input path — after review, Calories, Protein, Fat, Carbs, and Fiber land in Health. Daily total and remaining kcal show at the end.",
       shots_title: "How it feels",
-      shots_lead: "From menu to “Logged” — no giant App Store install, no login wall.",
+      shots_lead: "From the Shortcuts app menu to “Logged” — no App Store download, no login wall.",
       cap1: "Menu: Photo · Text · Barcode · Label",
       cap2: "Or just describe it",
       cap3: "Review + traffic light + Correct",
@@ -594,7 +611,7 @@
       cmp_appctx: "App context", cmp_rare: "rarely a focus", cmp_core: "Core path", cmp_opt: "often optional",
       cmp_notpitch: "not the pitch", cmp_nodata: "No (no account of ours)", cmp_cloud: "Yes (cloud profile)",
       cmp_cloud2: "Yes (cloud + community)", cmp_cloud3: "Yes (coaching program)", cmp_content: "Content / community",
-      cmp_community: "Community", cmp_humancoach: "Yes (core product)", cmp_shortcut: "One Shortcut", cmp_onboard: "App + onboarding",
+      cmp_community: "Community", cmp_humancoach: "Yes (core product)", cmp_shortcut: "One iOS Shortcut", cmp_onboard: "App + onboarding",
       cmp_fine: "Orientation as of 2026. App features change; AI Kalorien is not medical advice and not an insurer program.",
       learn_title: "How the AI learned",
       learn_lead: "The prompt isn’t “just ChatGPT.” It was sharpened against real meals and a Buddy benchmark.",
@@ -624,10 +641,10 @@
       hood_4: "<strong style=\"color:var(--fg)\">Guard</strong> at 0 kcal — no blind log",
       hood_5: "<strong style=\"color:var(--fg)\">Five Health samples</strong> + daily summary",
       cta_title: "Ready to try?",
-      cta_sub: "iPhone or iPad · Shortcuts app · one tap.",
+      cta_sub: "iOS only: iPhone or iPad · Shortcuts app · one tap.",
       cta_fine: "Guidance only. Not nutrition or medical advice. Estimates can be off — barcode & label are more precise for packaged food.",
       footer_1: "By Daniel Riewe · <a href=\"https://github.com/Oxyd22/ai-kalorien\">GitHub</a>",
-      footer_2: "No account · No subscription · Data in Apple Health"
+      footer_2: "iOS Shortcut · No account · No subscription · Data in Apple Health"
     }
   };
 
