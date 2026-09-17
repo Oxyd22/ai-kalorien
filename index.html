@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Kalorien v3 — kostenloser iOS-Kurzbefehl</title>
+  <meta name="description" content="Foto vom Essen → KI-Kalorienschätzung. Kostenloser Kurzbefehl von Daniel Riewe." />
+  <style>
+    :root { color-scheme: light dark; --fg: #111; --muted: #555; --bg: #fafafa; --card: #fff; --accent: #0a7; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg: #f2f2f2; --muted: #aaa; --bg: #121212; --card: #1c1c1c; --accent: #3d9; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.5; }
+    main { max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 .5rem; }
+    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+    .card { background: var(--card); border-radius: 12px; padding: 1.25rem; margin: 1rem 0; border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+    a.btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: .75rem 1.1rem; border-radius: 10px; font-weight: 600; }
+    a.btn.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    ul { padding-left: 1.2rem; }
+
+    .shots { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .shots figure { margin: 0; }
+    .shots img { width: 100%; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+    .shots figcaption { font-size: .75rem; color: var(--muted); margin-top: .35rem; }
+    @media (max-width: 520px) { .shots { grid-template-columns: 1fr; } }
+    footer { margin-top: 2.5rem; font-size: .85rem; color: var(--muted); }
+    .row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>AI Kalorien v3</h1>
+    <p class="lead">Foto, Text, Barcode oder Nährwert-Etikett → kcal &amp; Makros, Coaching zum Tagesziel, HealthKit. Kostenloser Kurzbefehl.</p>
+
+    <div class="card">
+      <p><strong>So geht’s</strong></p>
+      <ul>
+        <li>5 Wege: Kamera, Mediathek, Text, Barcode (Open Food Facts), Etikett-OCR</li>
+        <li>Coaching-Ampel vs. Tagesziel · Mehrfach-Korrektur · Eintrag in Apple Health</li>
+        <li>Nur Orientierung — keine Ernährungsberatung</li>
+      </ul>
+      <div class="row">
+        <a class="btn" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Kurzbefehl holen</a>
+      </div>
+      <p style="font-size:.85rem;color:var(--muted);margin-top:1rem;">Kostenlos. Spenden-Link folgt später.</p>
+    </div>
+
+
+    <div class="card">
+      <p><strong>So sieht’s aus</strong></p>
+      <div class="shots">
+        <figure><img src="screenshots/01.png" alt="Erfassungsmenü" /><figcaption>5 Erfassungswege</figcaption></figure>
+        <figure><img src="screenshots/03.png" alt="Text-Eingabe" /><figcaption>Text beschreiben</figcaption></figure>
+        <figure><img src="screenshots/02.png" alt="Review & Coaching" /><figcaption>Review + Ampel</figcaption></figure>
+        <figure><img src="screenshots/04.png" alt="Health-Eintrag" /><figcaption>Eingetragen in Health</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="card">
+      <p><strong>Feedback</strong></p>
+      <p>Bugs, Ideen, Übersetzungs-Wünsche? Schreib eine Mail oder nutze später das Feedback-Formular.</p>
+      <p><a href="mailto:rauchda@gmail.com?subject=AI%20Kalorien%20v3%20Feedback">Feedback per Mail</a></p>
+    </div>
+
+    <footer>
+      Von Daniel Riewe · kostenlos · Schätzungen ohne Gewähr<br />
+      Keine medizinische oder ernährungsmedizinische Beratung.
+    </footer>
+  </main>
+</body>
+</html>
