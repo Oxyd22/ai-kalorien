@@ -3,38 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Kalorien — Kostenloser Kurzbefehl für Apple Health</title>
-  <meta name="description" content="Foto, Barcode oder Etikett → kcal & Makros. Coaching zum Tagesziel. Eintrag in Apple Health. Kein Account, keine Tracker-Cloud. Kostenloser iOS-Kurzbefehl." />
+  <title>AI Kalorien — Free Apple Shortcut for Health</title>
+  <meta name="description" id="meta-desc" content="" />
   <meta property="og:title" content="AI Kalorien v3" />
-  <meta property="og:description" content="Der Kalorien-Tracker ohne App-Abo und ohne Datenkrake — als Apple-Kurzbefehl." />
+  <meta property="og:description" id="og-desc" content="" />
   <link rel="preconnect" href="https://www.icloud.com" />
   <style>
     :root {
-      --bg: #000;
-      --bg-elevated: #111;
-      --bg-card: #1c1c1e;
-      --bg-card-2: #2c2c2e;
-      --fg: #f5f5f7;
-      --muted: #a1a1a6;
-      --blue: #2997ff;
-      --blue-soft: rgba(41, 151, 255, 0.15);
-      --green: #30d158;
-      --yellow: #ffd60a;
-      --red: #ff453a;
-      --hairline: rgba(255,255,255,0.12);
-      --radius: 22px;
-      --max: 980px;
+      --bg: #000; --bg-card: #1c1c1e; --bg-card-2: #2c2c2e;
+      --fg: #f5f5f7; --muted: #a1a1a6; --blue: #2997ff;
+      --blue-soft: rgba(41,151,255,.15); --green: #30d158;
+      --hairline: rgba(255,255,255,.12); --radius: 22px; --max: 980px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.47;
-      -webkit-font-smoothing: antialiased;
-      letter-spacing: -0.01em;
+      background: var(--bg); color: var(--fg); line-height: 1.47;
+      -webkit-font-smoothing: antialiased; letter-spacing: -.01em;
     }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -42,269 +29,188 @@
     nav {
       position: sticky; top: 0; z-index: 20;
       backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(0,0,0,0.72);
-      border-bottom: 1px solid var(--hairline);
+      background: rgba(0,0,0,.72); border-bottom: 1px solid var(--hairline);
     }
     nav .inner {
       max-width: var(--max); margin: 0 auto; padding: 12px 22px;
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     nav .brand { font-weight: 600; font-size: 15px; color: var(--fg); text-decoration: none; }
-    nav .brand:hover { text-decoration: none; }
+    nav .right { display: flex; align-items: center; gap: 14px; }
+    .lang {
+      display: inline-flex; border: 1px solid var(--hairline); border-radius: 980px; overflow: hidden;
+      font-size: 12px; font-weight: 600;
+    }
+    .lang button {
+      background: transparent; border: 0; color: var(--muted); padding: 6px 11px;
+      cursor: pointer; font: inherit; font-weight: 600;
+    }
+    .lang button.active { background: var(--bg-card-2); color: var(--fg); }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       background: var(--blue); color: #fff !important; font-weight: 600;
       padding: 12px 22px; border-radius: 980px; font-size: 15px;
-      text-decoration: none !important; border: none; cursor: pointer;
-      transition: transform .15s ease, opacity .15s ease;
+      text-decoration: none !important; transition: transform .15s ease, opacity .15s ease;
     }
     .btn:hover { opacity: .92; transform: scale(1.02); text-decoration: none !important; }
-    .btn.ghost {
-      background: transparent; color: var(--blue) !important;
-      border: 1px solid rgba(41,151,255,.45);
-    }
+    .btn.ghost { background: transparent; color: var(--blue) !important; border: 1px solid rgba(41,151,255,.45); }
+    .btn.sm { padding: 8px 14px; font-size: 13px; }
     .hero {
-      padding: 72px 0 48px;
-      text-align: center;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41,151,255,0.28), transparent 60%),
-        #000;
+      padding: 72px 0 48px; text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41,151,255,.28), transparent 60%), #000;
     }
-    .eyebrow {
-      display: inline-block; font-size: 13px; font-weight: 600; color: var(--blue);
-      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px;
-    }
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 700; letter-spacing: -0.035em;
-      line-height: 1.05; margin: 0 0 18px;
-    }
-    .hero-lead {
-      font-size: clamp(1.15rem, 2.4vw, 1.35rem);
-      color: var(--muted); max-width: 34em; margin: 0 auto 28px;
-      font-weight: 400;
-    }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; margin: 0 0 18px; }
+    .hero-lead { font-size: clamp(1.15rem, 2.4vw, 1.35rem); color: var(--muted); max-width: 34em; margin: 0 auto 28px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 36px; }
     .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-    .pill {
-      font-size: 13px; color: var(--muted); background: var(--bg-card);
-      border: 1px solid var(--hairline); padding: 6px 12px; border-radius: 980px;
-    }
+    .pill { font-size: 13px; color: var(--muted); background: var(--bg-card); border: 1px solid var(--hairline); padding: 6px 12px; border-radius: 980px; }
     section { padding: 72px 0; }
     section.alt { background: #0a0a0a; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-    h2 {
-      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
-      font-weight: 700; letter-spacing: -0.03em;
-      margin: 0 0 12px; text-align: center;
-    }
-    .section-lead {
-      text-align: center; color: var(--muted); max-width: 36em;
-      margin: 0 auto 40px; font-size: 1.05rem;
-    }
-
-    .grid-5 {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(5, 1fr);
-    }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.35rem); font-weight: 700; letter-spacing: -.03em; margin: 0 0 12px; text-align: center; }
+    .section-lead { text-align: center; color: var(--muted); max-width: 36em; margin: 0 auto 40px; font-size: 1.05rem; }
+    .grid-5 { display: grid; gap: 16px; grid-template-columns: repeat(5, 1fr); }
     @media (max-width: 1100px) { .grid-5 { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 700px) { .grid-5 { grid-template-columns: 1fr; } }
-    .tag {
-      display: inline-block; font-size: 11px; font-weight: 600;
-      color: var(--blue); background: var(--blue-soft);
-      padding: 2px 8px; border-radius: 980px; vertical-align: middle;
-      letter-spacing: 0.02em;
-    }
-    .tag.exact { color: var(--green); background: rgba(48,209,88,0.15); }
-    .usecase {
-      margin-top: 12px !important; padding-top: 12px;
-      border-top: 1px solid var(--hairline);
-      font-size: 0.88rem !important;
-    }
+    .card { background: var(--bg-card); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 22px 20px; }
+    .card .icon { font-size: 1.75rem; margin-bottom: 10px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; color: var(--blue); background: var(--blue-soft); padding: 2px 8px; border-radius: 980px; vertical-align: middle; }
+    .tag.exact { color: var(--green); background: rgba(48,209,88,.15); }
+    .usecase { margin-top: 12px !important; padding-top: 12px; border-top: 1px solid var(--hairline); font-size: .88rem !important; }
     .health-note { margin-top: 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start; }
     .health-note .icon { grid-row: 1 / span 2; }
     .health-note h3 { margin: 0; }
-    .grid-4 {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    @media (max-width: 900px) { .grid-4 { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .grid-4 { grid-template-columns: 1fr; } }
-    .card {
-      background: var(--bg-card); border: 1px solid var(--hairline);
-      border-radius: var(--radius); padding: 22px 20px;
-    }
-    .card .icon { font-size: 1.75rem; margin-bottom: 10px; }
-    .card h3 { margin: 0 0 8px; font-size: 1.05rem; letter-spacing: -0.02em; }
-    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-    .shots {
-      display: grid; gap: 14px;
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .shots { display: grid; gap: 14px; grid-template-columns: repeat(4, 1fr); }
     @media (max-width: 800px) { .shots { grid-template-columns: 1fr 1fr; } }
     .shots figure { margin: 0; }
-    .shots img {
-      width: 100%; border-radius: 18px; display: block;
-      border: 1px solid var(--hairline);
-      box-shadow: 0 20px 50px rgba(0,0,0,.45);
-    }
-    .shots figcaption {
-      text-align: center; font-size: 12px; color: var(--muted); margin-top: 8px;
-    }
-    .split {
-      display: grid; gap: 28px; align-items: start;
-      grid-template-columns: 1fr 1fr;
-    }
+    .shots img { width: 100%; border-radius: 18px; display: block; border: 1px solid var(--hairline); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+    .shots figcaption { text-align: center; font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .split { display: grid; gap: 28px; align-items: start; grid-template-columns: 1fr 1fr; }
     @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
-    .split h3 { margin: 0 0 10px; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .split h3 { margin: 0 0 10px; font-size: 1.2rem; letter-spacing: -.02em; }
     .split p, .split li { color: var(--muted); }
     .split ul { padding-left: 1.15rem; margin: 0 0 12px; }
     .timeline { list-style: none; padding: 0; margin: 0; }
-    .timeline li {
-      position: relative; padding: 0 0 22px 28px;
-      border-left: 2px solid var(--hairline); margin-left: 8px;
-      color: var(--muted);
-    }
+    .timeline li { position: relative; padding: 0 0 22px 28px; border-left: 2px solid var(--hairline); margin-left: 8px; color: var(--muted); }
     .timeline li:last-child { padding-bottom: 0; }
-    .timeline li::before {
-      content: ""; position: absolute; left: -7px; top: 6px;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--blue); box-shadow: 0 0 0 4px var(--blue-soft);
-    }
+    .timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--blue-soft); }
     .timeline strong { color: var(--fg); display: block; margin-bottom: 4px; }
-    table.compare {
-      width: 100%; border-collapse: collapse; font-size: 0.92rem;
-      background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--hairline);
-    }
-    table.compare th, table.compare td {
-      padding: 14px 12px; text-align: left;
-      border-bottom: 1px solid var(--hairline); vertical-align: top;
-    }
-    table.compare th {
-      background: var(--bg-card-2); font-weight: 600; font-size: 0.85rem;
-      color: var(--muted); letter-spacing: 0.02em;
-    }
-    table.compare th.highlight, table.compare td.highlight {
-      background: rgba(41,151,255,0.08);
-    }
+    table.compare { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hairline); }
+    table.compare th, table.compare td { padding: 14px 12px; text-align: left; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+    table.compare th { background: var(--bg-card-2); font-weight: 600; font-size: .85rem; color: var(--muted); }
+    table.compare th.highlight, table.compare td.highlight { background: rgba(41,151,255,.08); }
     table.compare td.highlight { color: var(--fg); font-weight: 500; }
     table.compare tr:last-child td { border-bottom: none; }
     .check { color: var(--green); }
     .cross { color: var(--muted); }
-    .who {
-      display: grid; gap: 12px; grid-template-columns: 1fr 1fr 1fr;
-    }
+    .who { display: grid; gap: 12px; grid-template-columns: 1fr 1fr 1fr; }
     @media (max-width: 700px) { .who { grid-template-columns: 1fr; } }
-    .who .card h3 { font-size: 0.95rem; color: var(--blue); }
-    .cta-band {
-      text-align: center; padding: 64px 22px;
-      background:
-        radial-gradient(ellipse 70% 80% at 50% 100%, rgba(41,151,255,0.22), transparent 55%),
-        #000;
-    }
-    .cta-band h2 { margin-bottom: 10px; }
-    footer {
-      padding: 36px 22px 48px; text-align: center;
-      color: var(--muted); font-size: 13px; border-top: 1px solid var(--hairline);
-    }
+    .who .card h3 { font-size: .95rem; color: var(--blue); }
+    .cta-band { text-align: center; padding: 64px 22px; background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(41,151,255,.22), transparent 55%), #000; }
     .fine { font-size: 12px; color: #6e6e73; max-width: 40em; margin: 16px auto 0; }
+    footer { padding: 36px 22px 48px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--hairline); }
   </style>
 </head>
 <body>
   <nav>
     <div class="inner">
       <a class="brand" href="#">AI Kalorien</a>
-      <a class="btn" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Kurzbefehl holen</a>
+      <div class="right">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" id="btn-de" class="active" onclick="setLang('de')">DE</button>
+          <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+        <a class="btn sm" data-i18n="nav_cta" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Get Shortcut</a>
+      </div>
     </div>
   </nav>
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Kostenloser Apple-Kurzbefehl · v3</div>
-      <h1>Kalorien tracken.<br />Ohne App-Abo. Ohne Datenkrake.</h1>
-      <p class="hero-lead">
-        Kamera, Mediathek, Text, Barcode oder Etikett — und der Eintrag landet in <strong style="color:var(--fg)">Apple Health</strong>.
-        Kein Account. Keine Tracker-Cloud von uns. Nur Orientierung — lokal auf deinem iPhone.
-      </p>
+      <div class="eyebrow" data-i18n="eyebrow">Free Apple Shortcut · v3</div>
+      <h1 data-i18n-html="hero_title">Track calories.<br />No app subscription. No data vacuum.</h1>
+      <p class="hero-lead" data-i18n-html="hero_lead">Camera, Photo Library, Text, Barcode, or Label — then log to <strong style="color:var(--fg)">Apple Health</strong>. No account. No tracker cloud from us.</p>
       <div class="hero-actions">
-        <a class="btn" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Kostenlos hinzufügen</a>
-        <a class="btn ghost" href="#eingaben">Eingaben ansehen</a>
+        <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add for free</a>
+        <a class="btn ghost" data-i18n="cta_secondary" href="#eingaben">See inputs</a>
       </div>
       <div class="pills">
-        <span class="pill">📷 Kamera (AI)</span>
-        <span class="pill">🖼️ Fotobibliothek (AI)</span>
-        <span class="pill">✍️ Text (AI)</span>
-        <span class="pill">🛒 Barcode</span>
-        <span class="pill">🏷️ Etikett</span>
-        <span class="pill">❤️ Apple Health</span>
+        <span class="pill" data-i18n="pill_cam">📷 Camera (AI)</span>
+        <span class="pill" data-i18n="pill_lib">🖼️ Photo Library (AI)</span>
+        <span class="pill" data-i18n="pill_text">✍️ Text (AI)</span>
+        <span class="pill" data-i18n="pill_bar">🛒 Barcode</span>
+        <span class="pill" data-i18n="pill_lab">🏷️ Label</span>
+        <span class="pill" data-i18n="pill_health">❤️ Apple Health</span>
       </div>
     </div>
   </header>
 
   <section id="eingaben">
     <div class="wrap">
-      <h2>Fünf Eingaben. Ein Flow.</h2>
-      <p class="section-lead">Drei Wege mit Apple Intelligence, zwei exakte Wege ohne Raten — plus Eintrag in Apple Health.</p>
+      <h2 data-i18n="inputs_title">Five inputs. One flow.</h2>
+      <p class="section-lead" data-i18n="inputs_lead">Three Apple Intelligence paths, two exact paths without guessing — then Apple Health.</p>
       <div class="grid-5">
         <div class="card">
           <div class="icon">📷</div>
-          <h3>Kamera <span class="tag">AI</span></h3>
-          <p>Frisch gekocht oder Restaurant-Teller: einmal knipsen, fertig.</p>
-          <p class="usecase"><strong>Use-Case:</strong> Mittagessen im Café — kein Barcode, keine Lust zu tippen. Foto vom Teller, Schätzung + Ampel, eintragen.</p>
+          <h3 data-i18n-html="in_cam_h">Camera <span class="tag">AI</span></h3>
+          <p data-i18n="in_cam_p">Fresh plate or restaurant meal: snap once, done.</p>
+          <p class="usecase" data-i18n-html="in_cam_u"><strong>Use case:</strong> Lunch at a café — no barcode, no typing. Photo, estimate + traffic light, log.</p>
         </div>
         <div class="card">
           <div class="icon">🖼️</div>
-          <h3>Fotobibliothek <span class="tag">AI</span></h3>
-          <p>Später nachziehen, was du schon fotografiert hast.</p>
-          <p class="usecase"><strong>Use-Case:</strong> Abends die Stories vom Brunch aus der Mediathek wählen und den Tag nachträglich loggen.</p>
+          <h3 data-i18n-html="in_lib_h">Photo Library <span class="tag">AI</span></h3>
+          <p data-i18n="in_lib_p">Catch up later with photos you already took.</p>
+          <p class="usecase" data-i18n-html="in_lib_u"><strong>Use case:</strong> In the evening, pick brunch photos from the library and log the day retroactively.</p>
         </div>
         <div class="card">
           <div class="icon">✍️</div>
-          <h3>Nur Text <span class="tag">AI</span></h3>
-          <p>Beschreiben statt knipsen — schnell und diskret.</p>
-          <p class="usecase"><strong>Use-Case:</strong> Im Meeting nur „2 Espresso und ein Croissant“ tippen, ohne die Kamera zu zücken.</p>
+          <h3 data-i18n-html="in_text_h">Text only <span class="tag">AI</span></h3>
+          <p data-i18n="in_text_p">Describe instead of shooting — fast and discreet.</p>
+          <p class="usecase" data-i18n-html="in_text_u"><strong>Use case:</strong> In a meeting, type “2 espressos and a croissant” without raising the camera.</p>
         </div>
         <div class="card">
           <div class="icon">🛒</div>
-          <h3>Barcode <span class="tag exact">exakt</span></h3>
-          <p>Herstellerwerte von Open Food Facts × deine Gramm — ohne LLM.</p>
-          <p class="usecase"><strong>Use-Case:</strong> Joghurt aus dem Kühlschrank scannen, 150 g angeben, exakte Makros statt Foto-Schätzung.</p>
+          <h3 data-i18n-html="in_bar_h">Barcode <span class="tag exact">exact</span></h3>
+          <p data-i18n="in_bar_p">Open Food Facts manufacturer values × your grams — no LLM.</p>
+          <p class="usecase" data-i18n-html="in_bar_u"><strong>Use case:</strong> Scan yogurt, enter 150 g, get exact macros instead of a photo guess.</p>
         </div>
         <div class="card">
           <div class="icon">🏷️</div>
-          <h3>Etikett <span class="tag exact">exakt</span></h3>
-          <p>Nährwerttabelle fotografieren, OCR + Portion rechnen.</p>
-          <p class="usecase"><strong>Use-Case:</strong> Import-Snack ohne Barcode-Treffer — Etikett knipsen, 40 g Portion, Werte aus der Tabelle.</p>
+          <h3 data-i18n-html="in_lab_h">Label <span class="tag exact">exact</span></h3>
+          <p data-i18n="in_lab_p">Photograph the nutrition panel; OCR + portion math.</p>
+          <p class="usecase" data-i18n-html="in_lab_u"><strong>Use case:</strong> Import snack with no barcode hit — snap the label, 40 g portion, values from the table.</p>
         </div>
       </div>
       <div class="card health-note">
         <div class="icon">❤️</div>
-        <h3>Danach: Apple Health</h3>
-        <p>Egal welcher Eingabeweg — nach dem Review landen Calories, Protein, Fett, Kohlenhydrate und Ballaststoffe in Health. Tagesstand und Rest-kcal siehst du im Abschluss.</p>
+        <h3 data-i18n="health_h">Then: Apple Health</h3>
+        <p data-i18n="health_p">Any input path — after review, Calories, Protein, Fat, Carbs, and Fiber land in Health. Daily total and remaining kcal show in the closing alert.</p>
       </div>
     </div>
   </section>
 
   <section class="alt">
     <div class="wrap">
-      <h2>So fühlt sich’s an</h2>
-      <p class="section-lead">Vom Menü bis „Eingetragen“ — ohne App-Store-Riesen und ohne Login-Wall.</p>
+      <h2 data-i18n="shots_title">How it feels</h2>
+      <p class="section-lead" data-i18n="shots_lead">From menu to “Logged” — no giant App Store install, no login wall.</p>
       <div class="shots">
         <figure>
-          <img src="screenshots/01.png" alt="Erfassungsmenü mit fünf Optionen" />
-          <figcaption>Menü: Foto · Text · Barcode · Etikett</figcaption>
+          <img src="screenshots/01.png" alt="" />
+          <figcaption data-i18n="cap1">Menu: Photo · Text · Barcode · Label</figcaption>
         </figure>
         <figure>
-          <img src="screenshots/03.png" alt="Text-Eingabe für die Mahlzeit" />
-          <figcaption>Oder einfach beschreiben</figcaption>
+          <img src="screenshots/03.png" alt="" />
+          <figcaption data-i18n="cap2">Or just describe it</figcaption>
         </figure>
         <figure>
-          <img src="screenshots/02.png" alt="Review mit Coaching-Ampel" />
-          <figcaption>Review + Ampel + Korrigieren</figcaption>
+          <img src="screenshots/02.png" alt="" />
+          <figcaption data-i18n="cap3">Review + traffic light + Correct</figcaption>
         </figure>
         <figure>
-          <img src="screenshots/04.png" alt="Erfolgreich in Health eingetragen" />
-          <figcaption>Fertig — in Apple Health</figcaption>
+          <img src="screenshots/04.png" alt="" />
+          <figcaption data-i18n="cap4">Done — in Apple Health</figcaption>
         </figure>
       </div>
     </div>
@@ -312,27 +218,27 @@
 
   <section>
     <div class="wrap">
-      <h2>Wobei hilft’s?</h2>
-      <p class="section-lead">Weniger Tippen. Mehr Klarheit. Daten bleiben bei Apple — nicht bei einer Tracker-Firma.</p>
+      <h2 data-i18n="help_title">How does it help?</h2>
+      <p class="section-lead" data-i18n="help_lead">Less typing. More clarity. Data stays with Apple — not a tracker company.</p>
       <div class="split">
         <div class="card">
-          <h3>Was es macht</h3>
+          <h3 data-i18n="help_what_h">What it does</h3>
           <ul>
-            <li>Mahlzeit erfassen in Sekunden (Foto / Text / Code / Etikett)</li>
-            <li>kcal + Protein, Fett, Kohlenhydrate, Ballaststoffe</li>
-            <li>Coaching: passt / lieber Hälfte / besser skippen</li>
-            <li>Optional mehrfach korrigieren („nur die Hälfte“, „Hühnchen statt …“)</li>
-            <li>Log in Apple Health, Tagesstand anzeigen</li>
+            <li data-i18n="help_w1">Log a meal in seconds (photo / text / code / label)</li>
+            <li data-i18n="help_w2">kcal + protein, fat, carbs, fiber</li>
+            <li data-i18n="help_w3">Coach: fits / try half / better skip</li>
+            <li data-i18n="help_w4">Correct in plain language, repeatedly if needed</li>
+            <li data-i18n="help_w5">Write to Apple Health, show daily status</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Wobei es hilft</h3>
+          <h3 data-i18n="help_when_h">When it helps</h3>
           <ul>
-            <li>Wenn du keine Lust auf 14-Millionen-DB-Suche hast</li>
-            <li>Wenn Fertigprodukte exakt sollen (Barcode/Etikett)</li>
-            <li>Wenn du Health schon nutzt und kein zweites Silo willst</li>
-            <li>Wenn Privacy zählt: kein Account, keine unsere Cloud</li>
-            <li>Wenn „gratis“ wirklich gratis sein soll — kein Abo-Funnel</li>
+            <li data-i18n="help_n1">When you don’t want a 14-million-food DB hunt</li>
+            <li data-i18n="help_n2">When packaged food should be exact (barcode/label)</li>
+            <li data-i18n="help_n3">When you already use Health and hate a second silo</li>
+            <li data-i18n="help_n4">When privacy matters: no account, no cloud of ours</li>
+            <li data-i18n="help_n5">When free should mean free — no subscription funnel</li>
           </ul>
         </div>
       </div>
@@ -341,8 +247,8 @@
 
   <section class="alt" id="vergleich">
     <div class="wrap">
-      <h2>Besser — wo’s zählt</h2>
-      <p class="section-lead">Kommerzielle Apps sind groß. AI Kalorien ist bewusst klein, privat und kostenlos.</p>
+      <h2 data-i18n="cmp_title">Better where it matters</h2>
+      <p class="section-lead" data-i18n="cmp_lead">Commercial apps are huge. AI Kalorien is deliberately small, private, and free.</p>
       <div style="overflow-x:auto;">
         <table class="compare">
           <thead>
@@ -356,111 +262,108 @@
           </thead>
           <tbody>
             <tr>
-              <td>Preis</td>
-              <td class="highlight"><span class="check">Kostenlos</span></td>
-              <td>Freemium / Abo</td>
-              <td>Freemium / Premium</td>
-              <td>Programm / oft KK</td>
+              <td data-i18n="cmp_r1">Price</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_free">Free</span></td>
+              <td data-i18n="cmp_freemium">Freemium / subscription</td>
+              <td data-i18n="cmp_premium">Freemium / Premium</td>
+              <td data-i18n="cmp_program">Program / often insurer</td>
             </tr>
             <tr>
-              <td>Account nötig</td>
-              <td class="highlight"><span class="check">Nein</span></td>
-              <td>Ja</td>
-              <td>Ja</td>
-              <td>Ja</td>
+              <td data-i18n="cmp_r2">Account required</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_no">No</span></td>
+              <td data-i18n="cmp_yes">Yes</td>
+              <td data-i18n="cmp_yes">Yes</td>
+              <td data-i18n="cmp_yes">Yes</td>
             </tr>
             <tr>
-              <td>Foto → Schätzung</td>
-              <td class="highlight"><span class="check">Ja (Apple Intelligence)</span></td>
-              <td>teilweise / Features variieren</td>
-              <td>teilweise / Premium-Fokus</td>
-              <td>Ja + Beratung</td>
+              <td data-i18n="cmp_r3">Photo → estimate</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_ai">Yes (Apple Intelligence)</span></td>
+              <td data-i18n="cmp_partial">partial / varies</td>
+              <td data-i18n="cmp_partial2">partial / Premium focus</td>
+              <td data-i18n="cmp_coach">Yes + coaching</td>
             </tr>
             <tr>
-              <td>Barcode</td>
-              <td class="highlight"><span class="check">Ja (Open Food Facts)</span></td>
-              <td><span class="check">Ja</span></td>
-              <td><span class="check">Ja</span></td>
-              <td>App-Kontext</td>
+              <td data-i18n="cmp_r4">Barcode</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_off">Yes (Open Food Facts)</span></td>
+              <td><span class="check" data-i18n="cmp_yes">Yes</span></td>
+              <td><span class="check" data-i18n="cmp_yes">Yes</span></td>
+              <td data-i18n="cmp_appctx">App context</td>
             </tr>
             <tr>
-              <td>Etikett-OCR</td>
-              <td class="highlight"><span class="check">Ja</span></td>
-              <td><span class="cross">selten Fokus</span></td>
-              <td><span class="cross">selten Fokus</span></td>
+              <td data-i18n="cmp_r5">Label OCR</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_yes">Yes</span></td>
+              <td><span class="cross" data-i18n="cmp_rare">rarely a focus</span></td>
+              <td><span class="cross" data-i18n="cmp_rare">rarely a focus</span></td>
               <td><span class="cross">—</span></td>
             </tr>
             <tr>
-              <td>Apple Health</td>
-              <td class="highlight"><span class="check">Kern-Pfad</span></td>
-              <td>oft optional</td>
-              <td>oft optional</td>
-              <td>nicht der Pitch</td>
+              <td data-i18n="cmp_r6">Apple Health</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_core">Core path</span></td>
+              <td data-i18n="cmp_opt">often optional</td>
+              <td data-i18n="cmp_opt">often optional</td>
+              <td data-i18n="cmp_notpitch">not the pitch</td>
             </tr>
             <tr>
-              <td>Daten bei Anbieter</td>
-              <td class="highlight"><span class="check">Nein (kein unser Account)</span></td>
-              <td>Ja (Cloud-Profil)</td>
-              <td>Ja (Cloud + Community)</td>
-              <td>Ja (Coaching-Programm)</td>
+              <td data-i18n="cmp_r7">Data at vendor</td>
+              <td class="highlight"><span class="check" data-i18n="cmp_nodata">No (no account of ours)</span></td>
+              <td data-i18n="cmp_cloud">Yes (cloud profile)</td>
+              <td data-i18n="cmp_cloud2">Yes (cloud + community)</td>
+              <td data-i18n="cmp_cloud3">Yes (coaching program)</td>
             </tr>
             <tr>
-              <td>Menschliche Beratung</td>
-              <td class="highlight"><span class="cross">Nein</span></td>
-              <td>Content / Community</td>
-              <td>Community</td>
-              <td><span class="check">Ja (Kernprodukt)</span></td>
+              <td data-i18n="cmp_r8">Human coaching</td>
+              <td class="highlight"><span class="cross" data-i18n="cmp_no">No</span></td>
+              <td data-i18n="cmp_content">Content / community</td>
+              <td data-i18n="cmp_community">Community</td>
+              <td><span class="check" data-i18n="cmp_humancoach">Yes (core product)</span></td>
             </tr>
             <tr>
-              <td>Installation</td>
-              <td class="highlight">Ein Kurzbefehl</td>
+              <td data-i18n="cmp_r9">Install</td>
+              <td class="highlight" data-i18n="cmp_shortcut">One Shortcut</td>
               <td>App Store</td>
               <td>App Store</td>
-              <td>App + Onboarding</td>
+              <td data-i18n="cmp_onboard">App + onboarding</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="fine">Stand Orientierung 2026. Features der Apps ändern sich; AI Kalorien ersetzt keine medizinische oder ernährungsmedizinische Beratung und kein Krankenkassen-Programm.</p>
+      <p class="fine" data-i18n="cmp_fine">Orientation as of 2026. App features change; AI Kalorien is not medical advice and not an insurer program.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2>Lernprozess der AI</h2>
-      <p class="section-lead">Der Prompt ist nicht „irgendwie ChatGPT“. Er wurde gegen echte Mahlzeiten und ein Buddy-Benchmark geschärft.</p>
+      <h2 data-i18n="learn_title">How the AI learned</h2>
+      <p class="section-lead" data-i18n="learn_lead">The prompt isn’t “just ChatGPT.” It was sharpened against real meals and a Buddy benchmark.</p>
       <div class="split">
         <div>
           <ol class="timeline">
             <li>
-              <strong>v2 — Foto &amp; Text POC</strong>
-              Kamera / Mediathek / Text, Coaching-Ampel, Korrektur, Health-Log. Erste Faustregeln für Portionen.
+              <strong data-i18n="learn_1t">v2 — photo &amp; text POC</strong>
+              <span data-i18n="learn_1d">Camera / library / text, traffic light, correction, Health log. First portion heuristics.</span>
             </li>
             <li>
-              <strong>Portionen neu denken</strong>
-              Weg von „Frühstück = 400–700 kcal“. Stattdessen: erst Gramm schätzen, Teller ≈ 26 cm als Maßstab, systematische Foto-Überschätzung einkalkulieren.
+              <strong data-i18n="learn_2t">Rethink portions</strong>
+              <span data-i18n="learn_2d">Away from “breakfast = 400–700 kcal.” Estimate grams first, ~26 cm plate as scale, account for photo overestimation.</span>
             </li>
             <li>
-              <strong>Benchmark mit dem Buddy-Projekt</strong>
-              Modelle und Strategien verglichen. Erkenntnis: Summenbildung und Portions-Mathe gehören nicht ins LLM — sondern in deterministische Schritte.
+              <strong data-i18n="learn_3t">Benchmark with the Buddy project</strong>
+              <span data-i18n="learn_3d">Compared models and strategies. Insight: summing and portion math shouldn’t live in the LLM — use deterministic steps.</span>
             </li>
             <li>
-              <strong>v3 — Barcode, Etikett, Mehrfach-Korrektur</strong>
-              Exakte Pfade für Verpacktes. Korrektur-Schleife bis 10×. Notizen akkumulieren. 156 → 271 Aktionen.
+              <strong data-i18n="learn_4t">v3 — barcode, label, multi-correct</strong>
+              <span data-i18n="learn_4d">Exact paths for packaged food. Correction loop up to 10×. Notes accumulate. 156 → 271 actions.</span>
             </li>
           </ol>
         </div>
         <div class="card">
-          <h3>Was die AI darf — und was nicht</h3>
+          <h3 data-i18n="learn_role_h">What the AI may do — and what not</h3>
           <ul>
-            <li><strong>Foto/Text:</strong> Apple Intelligence (on-device / Private Cloud Compute) liefert strukturierte Nährwerte.</li>
-            <li><strong>Barcode:</strong> Herstellerdaten von Open Food Facts × Gramm — ohne LLM.</li>
-            <li><strong>Etikett:</strong> OCR liest die Tabelle; AI extrahiert nur „pro 100 g“; Portion rechnet Shortcuts.</li>
-            <li><strong>Korrektur:</strong> „Hälfte“ = Mathe. „Anderes Essen“ = Vision nochmal mit Notiz.</li>
+            <li data-i18n-html="learn_r1"><strong>Photo/Text:</strong> Apple Intelligence returns structured nutrition.</li>
+            <li data-i18n-html="learn_r2"><strong>Barcode:</strong> Open Food Facts × grams — no LLM.</li>
+            <li data-i18n-html="learn_r3"><strong>Label:</strong> OCR reads the table; AI extracts only “per 100 g”; Shortcuts does portion math.</li>
+            <li data-i18n-html="learn_r4"><strong>Correction:</strong> “Half” = math. “Different food” = vision again with your note.</li>
           </ul>
-          <p style="margin:12px 0 0;color:var(--muted);font-size:.92rem;">
-            Beispiel-Flow aus den Screenshots: Text/Foto → Review (z. B. Kaffee 2 kcal) → Ampel „passt“ → Eintragen → Health zeigt Tagesstand.
-          </p>
         </div>
       </div>
     </div>
@@ -468,20 +371,20 @@
 
   <section class="alt">
     <div class="wrap">
-      <h2>Wer macht was?</h2>
-      <p class="section-lead">Klare Rollen — damit nichts „irgendwie in der Cloud“ verschwindet.</p>
+      <h2 data-i18n="who_title">Who does what?</h2>
+      <p class="section-lead" data-i18n="who_lead">Clear roles — so nothing “somehow vanishes into the cloud.”</p>
       <div class="who">
         <div class="card">
-          <h3>Du</h3>
-          <p>Knipst, scannst oder tippst. Korrigierst in Alltagssprache. Entscheidest: eintragen oder abbrechen.</p>
+          <h3 data-i18n="who_you_h">You</h3>
+          <p data-i18n="who_you_p">Snap, scan, or type. Correct in everyday language. Decide: log or cancel.</p>
         </div>
         <div class="card">
-          <h3>Kurzbefehl + Apple</h3>
-          <p>Menüs, OCR, HealthKit, Apple Intelligence. Logik für Ampel und Mengen-Skalierung läuft in Shortcuts.</p>
+          <h3 data-i18n="who_apple_h">Shortcut + Apple</h3>
+          <p data-i18n="who_apple_p">Menus, OCR, HealthKit, Apple Intelligence. Traffic light and quantity scaling run in Shortcuts.</p>
         </div>
         <div class="card">
-          <h3>Open Food Facts</h3>
-          <p>Nur beim Barcode: öffentliche Produktdaten. Kein Account bei uns. Kein Tracker-Profil.</p>
+          <h3 data-i18n="who_off_h">Open Food Facts</h3>
+          <p data-i18n="who_off_p">Only for barcode: public product data. No account with us. No tracker profile.</p>
         </div>
       </div>
     </div>
@@ -489,30 +392,258 @@
 
   <section>
     <div class="wrap">
-      <h2>Unter der Haube</h2>
-      <p class="section-lead">271 Aktionen. Ein Flow. Bewusst hybrid.</p>
+      <h2 data-i18n="hood_title">Under the hood</h2>
+      <p class="section-lead" data-i18n="hood_lead">271 actions. One flow. Deliberately hybrid.</p>
       <div class="card" style="max-width:720px;margin:0 auto;">
         <ol style="margin:0;padding-left:1.2rem;color:var(--muted);">
-          <li style="margin-bottom:8px;"><strong style="color:var(--fg)">Ziel &amp; bisher heute</strong> aus Health lesen</li>
-          <li style="margin-bottom:8px;"><strong style="color:var(--fg)">Erfassen</strong> über einen von fünf Wegen (llm oder exakt)</li>
-          <li style="margin-bottom:8px;"><strong style="color:var(--fg)">Review-Schleife</strong> mit Ampel und optionaler Korrektur</li>
-          <li style="margin-bottom:8px;"><strong style="color:var(--fg)">Guard</strong> bei 0 kcal — kein Blind-Log</li>
-          <li><strong style="color:var(--fg)">Fünf Health-Samples</strong> + Tages-Summary</li>
+          <li style="margin-bottom:8px;" data-i18n-html="hood_1"><strong style="color:var(--fg)">Goal &amp; so far today</strong> from Health</li>
+          <li style="margin-bottom:8px;" data-i18n-html="hood_2"><strong style="color:var(--fg)">Capture</strong> via one of five paths (llm or exact)</li>
+          <li style="margin-bottom:8px;" data-i18n-html="hood_3"><strong style="color:var(--fg)">Review loop</strong> with traffic light and optional correction</li>
+          <li style="margin-bottom:8px;" data-i18n-html="hood_4"><strong style="color:var(--fg)">Guard</strong> at 0 kcal — no blind log</li>
+          <li data-i18n-html="hood_5"><strong style="color:var(--fg)">Five Health samples</strong> + daily summary</li>
         </ol>
       </div>
     </div>
   </section>
 
   <div class="cta-band">
-    <h2>Bereit zum Ausprobieren?</h2>
-    <p class="section-lead" style="margin-bottom:24px;">iPhone oder iPad · Kurzbefehle-App · ein Tipp.</p>
-    <a class="btn" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">AI Kalorien v3 hinzufügen</a>
-    <p class="fine">Nur Orientierungshilfe. Keine Ernährungs- oder Medizinberatung. Schätzungen können abweichen — Barcode &amp; Etikett sind für Verpacktes die präziseren Wege.</p>
+    <h2 data-i18n="cta_title">Ready to try?</h2>
+    <p class="section-lead" style="margin-bottom:24px;" data-i18n="cta_sub">iPhone or iPad · Shortcuts app · one tap.</p>
+    <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add AI Kalorien v3</a>
+    <p class="fine" data-i18n="cta_fine">Guidance only. Not nutrition or medical advice. Estimates can be off — barcode &amp; label are more precise for packaged food.</p>
   </div>
 
   <footer>
-    <div>Von Daniel Riewe · <a href="https://github.com/Oxyd22/ai-kalorien">GitHub</a></div>
-    <div style="margin-top:8px;">Kein Account · Kein Abo · Daten in Apple Health</div>
+    <div data-i18n-html="footer_1">By Daniel Riewe · <a href="https://github.com/Oxyd22/ai-kalorien">GitHub</a></div>
+    <div style="margin-top:8px;" data-i18n="footer_2">No account · No subscription · Data in Apple Health</div>
   </footer>
+
+  <script>
+  const I18N = {
+    de: {
+      doc_title: "AI Kalorien — Kostenloser Kurzbefehl für Apple Health",
+      meta_desc: "Kamera, Mediathek, Text, Barcode oder Etikett → kcal & Makros. Coaching. Apple Health. Kein Account, keine Tracker-Cloud.",
+      og_desc: "Der Kalorien-Tracker ohne App-Abo und ohne Datenkrake — als Apple-Kurzbefehl.",
+      nav_cta: "Kurzbefehl holen",
+      eyebrow: "Kostenloser Apple-Kurzbefehl · v3",
+      hero_title: "Kalorien tracken.<br />Ohne App-Abo. Ohne Datenkrake.",
+      hero_lead: "Kamera, Mediathek, Text, Barcode oder Etikett — und der Eintrag landet in <strong style=\"color:var(--fg)\">Apple Health</strong>. Kein Account. Keine Tracker-Cloud von uns.",
+      cta_primary: "Kostenlos hinzufügen",
+      cta_secondary: "Eingaben ansehen",
+      pill_cam: "📷 Kamera (AI)", pill_lib: "🖼️ Fotobibliothek (AI)", pill_text: "✍️ Text (AI)",
+      pill_bar: "🛒 Barcode", pill_lab: "🏷️ Etikett", pill_health: "❤️ Apple Health",
+      inputs_title: "Fünf Eingaben. Ein Flow.",
+      inputs_lead: "Drei Wege mit Apple Intelligence, zwei exakte Wege ohne Raten — plus Eintrag in Apple Health.",
+      in_cam_h: "Kamera <span class=\"tag\">AI</span>",
+      in_cam_p: "Frisch gekocht oder Restaurant-Teller: einmal knipsen, fertig.",
+      in_cam_u: "<strong>Use-Case:</strong> Mittagessen im Café — kein Barcode, keine Lust zu tippen. Foto vom Teller, Schätzung + Ampel, eintragen.",
+      in_lib_h: "Fotobibliothek <span class=\"tag\">AI</span>",
+      in_lib_p: "Später nachziehen, was du schon fotografiert hast.",
+      in_lib_u: "<strong>Use-Case:</strong> Abends die Brunch-Fotos aus der Mediathek wählen und den Tag nachträglich loggen.",
+      in_text_h: "Nur Text <span class=\"tag\">AI</span>",
+      in_text_p: "Beschreiben statt knipsen — schnell und diskret.",
+      in_text_u: "<strong>Use-Case:</strong> Im Meeting nur „2 Espresso und ein Croissant“ tippen, ohne die Kamera zu zücken.",
+      in_bar_h: "Barcode <span class=\"tag exact\">exakt</span>",
+      in_bar_p: "Herstellerwerte von Open Food Facts × deine Gramm — ohne LLM.",
+      in_bar_u: "<strong>Use-Case:</strong> Joghurt scannen, 150 g angeben, exakte Makros statt Foto-Schätzung.",
+      in_lab_h: "Etikett <span class=\"tag exact\">exakt</span>",
+      in_lab_p: "Nährwerttabelle fotografieren, OCR + Portion rechnen.",
+      in_lab_u: "<strong>Use-Case:</strong> Import-Snack ohne Barcode-Treffer — Etikett knipsen, 40 g Portion, Werte aus der Tabelle.",
+      health_h: "Danach: Apple Health",
+      health_p: "Egal welcher Eingabeweg — nach dem Review landen Calories, Protein, Fett, Kohlenhydrate und Ballaststoffe in Health. Tagesstand und Rest-kcal siehst du im Abschluss.",
+      shots_title: "So fühlt sich’s an",
+      shots_lead: "Vom Menü bis „Eingetragen“ — ohne App-Store-Riesen und ohne Login-Wall.",
+      cap1: "Menü: Foto · Text · Barcode · Etikett",
+      cap2: "Oder einfach beschreiben",
+      cap3: "Review + Ampel + Korrigieren",
+      cap4: "Fertig — in Apple Health",
+      help_title: "Wobei hilft’s?",
+      help_lead: "Weniger Tippen. Mehr Klarheit. Daten bleiben bei Apple — nicht bei einer Tracker-Firma.",
+      help_what_h: "Was es macht",
+      help_w1: "Mahlzeit erfassen in Sekunden (Foto / Text / Code / Etikett)",
+      help_w2: "kcal + Protein, Fett, Kohlenhydrate, Ballaststoffe",
+      help_w3: "Coaching: passt / lieber Hälfte / besser skippen",
+      help_w4: "Optional mehrfach korrigieren („nur die Hälfte“, „Hühnchen statt …“)",
+      help_w5: "Log in Apple Health, Tagesstand anzeigen",
+      help_when_h: "Wobei es hilft",
+      help_n1: "Wenn du keine Lust auf 14-Millionen-DB-Suche hast",
+      help_n2: "Wenn Fertigprodukte exakt sollen (Barcode/Etikett)",
+      help_n3: "Wenn du Health schon nutzt und kein zweites Silo willst",
+      help_n4: "Wenn Privacy zählt: kein Account, keine unsere Cloud",
+      help_n5: "Wenn „gratis“ wirklich gratis sein soll — kein Abo-Funnel",
+      cmp_title: "Besser — wo’s zählt",
+      cmp_lead: "Kommerzielle Apps sind groß. AI Kalorien ist bewusst klein, privat und kostenlos.",
+      cmp_r1: "Preis", cmp_r2: "Account nötig", cmp_r3: "Foto → Schätzung", cmp_r4: "Barcode",
+      cmp_r5: "Etikett-OCR", cmp_r6: "Apple Health", cmp_r7: "Daten bei Anbieter", cmp_r8: "Menschliche Beratung", cmp_r9: "Installation",
+      cmp_free: "Kostenlos", cmp_freemium: "Freemium / Abo", cmp_premium: "Freemium / Premium", cmp_program: "Programm / oft KK",
+      cmp_no: "Nein", cmp_yes: "Ja", cmp_ai: "Ja (Apple Intelligence)", cmp_partial: "teilweise / Features variieren",
+      cmp_partial2: "teilweise / Premium-Fokus", cmp_coach: "Ja + Beratung", cmp_off: "Ja (Open Food Facts)",
+      cmp_appctx: "App-Kontext", cmp_rare: "selten Fokus", cmp_core: "Kern-Pfad", cmp_opt: "oft optional",
+      cmp_notpitch: "nicht der Pitch", cmp_nodata: "Nein (kein unser Account)", cmp_cloud: "Ja (Cloud-Profil)",
+      cmp_cloud2: "Ja (Cloud + Community)", cmp_cloud3: "Ja (Coaching-Programm)", cmp_content: "Content / Community",
+      cmp_community: "Community", cmp_humancoach: "Ja (Kernprodukt)", cmp_shortcut: "Ein Kurzbefehl", cmp_onboard: "App + Onboarding",
+      cmp_fine: "Stand Orientierung 2026. Features der Apps ändern sich; AI Kalorien ersetzt keine medizinische Beratung und kein Krankenkassen-Programm.",
+      learn_title: "Lernprozess der AI",
+      learn_lead: "Der Prompt ist nicht „irgendwie ChatGPT“. Er wurde gegen echte Mahlzeiten und ein Buddy-Benchmark geschärft.",
+      learn_1t: "v2 — Foto & Text POC",
+      learn_1d: "Kamera / Mediathek / Text, Coaching-Ampel, Korrektur, Health-Log. Erste Faustregeln für Portionen.",
+      learn_2t: "Portionen neu denken",
+      learn_2d: "Weg von „Frühstück = 400–700 kcal“. Stattdessen: erst Gramm schätzen, Teller ≈ 26 cm als Maßstab, Foto-Überschätzung einkalkulieren.",
+      learn_3t: "Benchmark mit dem Buddy-Projekt",
+      learn_3d: "Modelle und Strategien verglichen. Erkenntnis: Summen und Portions-Mathe gehören nicht ins LLM — sondern in deterministische Schritte.",
+      learn_4t: "v3 — Barcode, Etikett, Mehrfach-Korrektur",
+      learn_4d: "Exakte Pfade für Verpacktes. Korrektur-Schleife bis 10×. Notizen akkumulieren. 156 → 271 Aktionen.",
+      learn_role_h: "Was die AI darf — und was nicht",
+      learn_r1: "<strong>Foto/Text:</strong> Apple Intelligence liefert strukturierte Nährwerte.",
+      learn_r2: "<strong>Barcode:</strong> Herstellerdaten von Open Food Facts × Gramm — ohne LLM.",
+      learn_r3: "<strong>Etikett:</strong> OCR liest die Tabelle; AI extrahiert nur „pro 100 g“; Shortcuts rechnet die Portion.",
+      learn_r4: "<strong>Korrektur:</strong> „Hälfte“ = Mathe. „Anderes Essen“ = Vision nochmal mit Notiz.",
+      who_title: "Wer macht was?",
+      who_lead: "Klare Rollen — damit nichts „irgendwie in der Cloud“ verschwindet.",
+      who_you_h: "Du", who_you_p: "Knipst, scannst oder tippst. Korrigierst in Alltagssprache. Entscheidest: eintragen oder abbrechen.",
+      who_apple_h: "Kurzbefehl + Apple", who_apple_p: "Menüs, OCR, HealthKit, Apple Intelligence. Ampel und Mengen-Skalierung laufen in Shortcuts.",
+      who_off_h: "Open Food Facts", who_off_p: "Nur beim Barcode: öffentliche Produktdaten. Kein Account bei uns. Kein Tracker-Profil.",
+      hood_title: "Unter der Haube",
+      hood_lead: "271 Aktionen. Ein Flow. Bewusst hybrid.",
+      hood_1: "<strong style=\"color:var(--fg)\">Ziel &amp; bisher heute</strong> aus Health lesen",
+      hood_2: "<strong style=\"color:var(--fg)\">Erfassen</strong> über einen von fünf Wegen (llm oder exakt)",
+      hood_3: "<strong style=\"color:var(--fg)\">Review-Schleife</strong> mit Ampel und optionaler Korrektur",
+      hood_4: "<strong style=\"color:var(--fg)\">Guard</strong> bei 0 kcal — kein Blind-Log",
+      hood_5: "<strong style=\"color:var(--fg)\">Fünf Health-Samples</strong> + Tages-Summary",
+      cta_title: "Bereit zum Ausprobieren?",
+      cta_sub: "iPhone oder iPad · Kurzbefehle-App · ein Tipp.",
+      cta_fine: "Nur Orientierungshilfe. Keine Ernährungs- oder Medizinberatung. Schätzungen können abweichen — Barcode & Etikett sind für Verpacktes präziser.",
+      footer_1: "Von Daniel Riewe · <a href=\"https://github.com/Oxyd22/ai-kalorien\">GitHub</a>",
+      footer_2: "Kein Account · Kein Abo · Daten in Apple Health"
+    },
+    en: {
+      doc_title: "AI Kalorien — Free Apple Shortcut for Health",
+      meta_desc: "Camera, Photo Library, Text, Barcode, or Label → kcal & macros. Coaching. Apple Health. No account, no tracker cloud.",
+      og_desc: "Calorie tracking without an app subscription or a data vacuum — as an Apple Shortcut.",
+      nav_cta: "Get Shortcut",
+      eyebrow: "Free Apple Shortcut · v3",
+      hero_title: "Track calories.<br />No app subscription. No data vacuum.",
+      hero_lead: "Camera, Photo Library, Text, Barcode, or Label — then it lands in <strong style=\"color:var(--fg)\">Apple Health</strong>. No account. No tracker cloud from us.",
+      cta_primary: "Add for free",
+      cta_secondary: "See inputs",
+      pill_cam: "📷 Camera (AI)", pill_lib: "🖼️ Photo Library (AI)", pill_text: "✍️ Text (AI)",
+      pill_bar: "🛒 Barcode", pill_lab: "🏷️ Label", pill_health: "❤️ Apple Health",
+      inputs_title: "Five inputs. One flow.",
+      inputs_lead: "Three Apple Intelligence paths, two exact paths without guessing — then Apple Health.",
+      in_cam_h: "Camera <span class=\"tag\">AI</span>",
+      in_cam_p: "Fresh plate or restaurant meal: snap once, done.",
+      in_cam_u: "<strong>Use case:</strong> Lunch at a café — no barcode, no typing. Photo, estimate + traffic light, log.",
+      in_lib_h: "Photo Library <span class=\"tag\">AI</span>",
+      in_lib_p: "Catch up later with photos you already took.",
+      in_lib_u: "<strong>Use case:</strong> In the evening, pick brunch photos from the library and log the day retroactively.",
+      in_text_h: "Text only <span class=\"tag\">AI</span>",
+      in_text_p: "Describe instead of shooting — fast and discreet.",
+      in_text_u: "<strong>Use case:</strong> In a meeting, type “2 espressos and a croissant” without raising the camera.",
+      in_bar_h: "Barcode <span class=\"tag exact\">exact</span>",
+      in_bar_p: "Open Food Facts manufacturer values × your grams — no LLM.",
+      in_bar_u: "<strong>Use case:</strong> Scan yogurt, enter 150 g, get exact macros instead of a photo guess.",
+      in_lab_h: "Label <span class=\"tag exact\">exact</span>",
+      in_lab_p: "Photograph the nutrition panel; OCR + portion math.",
+      in_lab_u: "<strong>Use case:</strong> Import snack with no barcode hit — snap the label, 40 g portion, values from the table.",
+      health_h: "Then: Apple Health",
+      health_p: "Any input path — after review, Calories, Protein, Fat, Carbs, and Fiber land in Health. Daily total and remaining kcal show at the end.",
+      shots_title: "How it feels",
+      shots_lead: "From menu to “Logged” — no giant App Store install, no login wall.",
+      cap1: "Menu: Photo · Text · Barcode · Label",
+      cap2: "Or just describe it",
+      cap3: "Review + traffic light + Correct",
+      cap4: "Done — in Apple Health",
+      help_title: "How does it help?",
+      help_lead: "Less typing. More clarity. Data stays with Apple — not a tracker company.",
+      help_what_h: "What it does",
+      help_w1: "Log a meal in seconds (photo / text / code / label)",
+      help_w2: "kcal + protein, fat, carbs, fiber",
+      help_w3: "Coach: fits / try half / better skip",
+      help_w4: "Correct in plain language, repeatedly if needed",
+      help_w5: "Write to Apple Health, show daily status",
+      help_when_h: "When it helps",
+      help_n1: "When you don’t want a 14-million-food DB hunt",
+      help_n2: "When packaged food should be exact (barcode/label)",
+      help_n3: "When you already use Health and hate a second silo",
+      help_n4: "When privacy matters: no account, no cloud of ours",
+      help_n5: "When free should mean free — no subscription funnel",
+      cmp_title: "Better where it matters",
+      cmp_lead: "Commercial apps are huge. AI Kalorien is deliberately small, private, and free.",
+      cmp_r1: "Price", cmp_r2: "Account required", cmp_r3: "Photo → estimate", cmp_r4: "Barcode",
+      cmp_r5: "Label OCR", cmp_r6: "Apple Health", cmp_r7: "Data at vendor", cmp_r8: "Human coaching", cmp_r9: "Install",
+      cmp_free: "Free", cmp_freemium: "Freemium / subscription", cmp_premium: "Freemium / Premium", cmp_program: "Program / often insurer",
+      cmp_no: "No", cmp_yes: "Yes", cmp_ai: "Yes (Apple Intelligence)", cmp_partial: "partial / varies",
+      cmp_partial2: "partial / Premium focus", cmp_coach: "Yes + coaching", cmp_off: "Yes (Open Food Facts)",
+      cmp_appctx: "App context", cmp_rare: "rarely a focus", cmp_core: "Core path", cmp_opt: "often optional",
+      cmp_notpitch: "not the pitch", cmp_nodata: "No (no account of ours)", cmp_cloud: "Yes (cloud profile)",
+      cmp_cloud2: "Yes (cloud + community)", cmp_cloud3: "Yes (coaching program)", cmp_content: "Content / community",
+      cmp_community: "Community", cmp_humancoach: "Yes (core product)", cmp_shortcut: "One Shortcut", cmp_onboard: "App + onboarding",
+      cmp_fine: "Orientation as of 2026. App features change; AI Kalorien is not medical advice and not an insurer program.",
+      learn_title: "How the AI learned",
+      learn_lead: "The prompt isn’t “just ChatGPT.” It was sharpened against real meals and a Buddy benchmark.",
+      learn_1t: "v2 — photo & text POC",
+      learn_1d: "Camera / library / text, traffic light, correction, Health log. First portion heuristics.",
+      learn_2t: "Rethink portions",
+      learn_2d: "Away from “breakfast = 400–700 kcal.” Estimate grams first, ~26 cm plate as scale, account for photo overestimation.",
+      learn_3t: "Benchmark with the Buddy project",
+      learn_3d: "Compared models and strategies. Insight: summing and portion math shouldn’t live in the LLM — use deterministic steps.",
+      learn_4t: "v3 — barcode, label, multi-correct",
+      learn_4d: "Exact paths for packaged food. Correction loop up to 10×. Notes accumulate. 156 → 271 actions.",
+      learn_role_h: "What the AI may do — and what not",
+      learn_r1: "<strong>Photo/Text:</strong> Apple Intelligence returns structured nutrition.",
+      learn_r2: "<strong>Barcode:</strong> Open Food Facts × grams — no LLM.",
+      learn_r3: "<strong>Label:</strong> OCR reads the table; AI extracts only “per 100 g”; Shortcuts does portion math.",
+      learn_r4: "<strong>Correction:</strong> “Half” = math. “Different food” = vision again with your note.",
+      who_title: "Who does what?",
+      who_lead: "Clear roles — so nothing “somehow vanishes into the cloud.”",
+      who_you_h: "You", who_you_p: "Snap, scan, or type. Correct in everyday language. Decide: log or cancel.",
+      who_apple_h: "Shortcut + Apple", who_apple_p: "Menus, OCR, HealthKit, Apple Intelligence. Traffic light and quantity scaling run in Shortcuts.",
+      who_off_h: "Open Food Facts", who_off_p: "Only for barcode: public product data. No account with us. No tracker profile.",
+      hood_title: "Under the hood",
+      hood_lead: "271 actions. One flow. Deliberately hybrid.",
+      hood_1: "<strong style=\"color:var(--fg)\">Goal &amp; so far today</strong> from Health",
+      hood_2: "<strong style=\"color:var(--fg)\">Capture</strong> via one of five paths (llm or exact)",
+      hood_3: "<strong style=\"color:var(--fg)\">Review loop</strong> with traffic light and optional correction",
+      hood_4: "<strong style=\"color:var(--fg)\">Guard</strong> at 0 kcal — no blind log",
+      hood_5: "<strong style=\"color:var(--fg)\">Five Health samples</strong> + daily summary",
+      cta_title: "Ready to try?",
+      cta_sub: "iPhone or iPad · Shortcuts app · one tap.",
+      cta_fine: "Guidance only. Not nutrition or medical advice. Estimates can be off — barcode & label are more precise for packaged food.",
+      footer_1: "By Daniel Riewe · <a href=\"https://github.com/Oxyd22/ai-kalorien\">GitHub</a>",
+      footer_2: "No account · No subscription · Data in Apple Health"
+    }
+  };
+
+  function setLang(lang) {
+    const t = I18N[lang] || I18N.en;
+    document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+    document.title = t.doc_title;
+    const md = document.getElementById('meta-desc');
+    if (md) md.setAttribute('content', t.meta_desc);
+    const og = document.getElementById('og-desc');
+    if (og) og.setAttribute('content', t.og_desc);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (t[k] != null) el.textContent = t[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const k = el.getAttribute('data-i18n-html');
+      if (t[k] != null) el.innerHTML = t[k];
+    });
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('ai-kalorien-lang', lang); } catch (e) {}
+  }
+
+  (function init() {
+    let lang = 'de';
+    try {
+      const saved = localStorage.getItem('ai-kalorien-lang');
+      if (saved === 'en' || saved === 'de') lang = saved;
+      else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) lang = 'en';
+    } catch (e) {}
+    setLang(lang);
+  })();
+  </script>
 </body>
 </html>
