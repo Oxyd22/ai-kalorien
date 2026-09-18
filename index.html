@@ -67,6 +67,8 @@
     }
     .btn:hover { opacity: .92; transform: scale(1.02); text-decoration: none !important; }
     .btn.ghost { background: transparent; color: var(--blue) !important; border: 1px solid rgba(41,151,255,.45); }
+    .btn.coffee { background: #ffdd00; color: #1d1d1f !important; }
+    .btn.coffee:hover { opacity: .95; }
     .btn.sm { padding: 8px 14px; font-size: 13px; }
     .hero {
       padding: 72px 0 48px; text-align: center;
@@ -165,6 +167,7 @@
       <div class="hero-actions">
         <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add iOS Shortcut</a>
         <a class="btn ghost" data-i18n="cta_secondary" href="#eingaben">See inputs</a>
+        <a class="btn coffee" data-i18n="cta_coffee" href="https://buymeacoffee.com/2y6d6c7fgrr" target="_blank" rel="noopener">Buy me a coffee</a>
       </div>
       <div class="pills">
         <span class="pill" data-i18n="pill_cam">📷 Camera (AI)</span>
@@ -439,13 +442,17 @@
   <div class="cta-band">
     <h2 data-i18n="cta_title">Ready to try?</h2>
     <p class="section-lead" style="margin-bottom:24px;" data-i18n="cta_sub">iPhone or iPad · Shortcuts app · one tap.</p>
-    <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add iOS Shortcut</a>
+    <div class="hero-actions" style="margin-bottom:8px;justify-content:center;">
+      <a class="btn" data-i18n="cta_primary" href="https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8">Add iOS Shortcut</a>
+      <a class="btn coffee" data-i18n="cta_coffee" href="https://buymeacoffee.com/2y6d6c7fgrr" target="_blank" rel="noopener">Buy me a coffee</a>
+    </div>
     <p class="fine" data-i18n="cta_fine">Guidance only. Not nutrition or medical advice. Estimates can be off — barcode &amp; label are more precise for packaged food.</p>
   </div>
 
   <footer>
     <div data-i18n-html="footer_1">By Daniel Riewe · <a href="https://github.com/Oxyd22/ai-kalorien">GitHub</a></div>
     <div style="margin-top:8px;" data-i18n="footer_2">No account · No subscription · Data in Apple Health</div>
+    <div style="margin-top:12px;"><a href="https://buymeacoffee.com/2y6d6c7fgrr" target="_blank" rel="noopener" data-i18n="cta_coffee">Buy me a coffee</a></div>
   </footer>
 
   <script>
@@ -462,6 +469,7 @@
       hero_lead: "Kein App-Store-Download: ein <strong style=\"color:var(--fg)\">iOS-Kurzbefehl</strong> für die App „Kurzbefehle“. Kamera, Mediathek, Text, Barcode oder Etikett — Eintrag in <strong style=\"color:var(--fg)\">Apple Health</strong>. Kein Account. Keine Tracker-Cloud von uns.",
       cta_primary: "iOS-Kurzbefehl hinzufügen",
       cta_secondary: "Eingaben ansehen",
+      cta_coffee: "Einen Kaffee spendieren",
       pill_cam: "📷 Kamera (AI)", pill_lib: "🖼️ Fotobibliothek (AI)", pill_text: "✍️ Text (AI)",
       pill_bar: "🛒 Barcode", pill_lab: "🏷️ Etikett", pill_health: "❤️ Apple Health",
       inputs_title: "Fünf Eingaben. Ein Flow.",
@@ -560,6 +568,7 @@
       hero_lead: "Not an App Store app: an <strong style=\"color:var(--fg)\">iOS Shortcut</strong> for the Shortcuts app. Camera, Photo Library, Text, Barcode, or Label — then <strong style=\"color:var(--fg)\">Apple Health</strong>. No account. No tracker cloud from us.",
       cta_primary: "Add iOS Shortcut",
       cta_secondary: "See inputs",
+      cta_coffee: "Buy me a coffee",
       pill_cam: "📷 Camera (AI)", pill_lib: "🖼️ Photo Library (AI)", pill_text: "✍️ Text (AI)",
       pill_bar: "🛒 Barcode", pill_lab: "🏷️ Label", pill_health: "❤️ Apple Health",
       inputs_title: "Five inputs. One flow.",
