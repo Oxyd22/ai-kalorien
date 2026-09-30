@@ -3,7 +3,8 @@
 Kostenloser iOS-/macOS-Kurzbefehl: Foto, Text, Barcode oder Etikett → kcal & Makros, Coaching, Apple Health.
 
 - **Install:** https://www.icloud.com/shortcuts/b2ed7080114a499fadf5efbe46a77fd8
-- **Site:** https://oxyd22.github.io/ai-kalorien/
+- **Site:** https://ai-kalorien.pages.dev/
+- **Alte GitHub-Pages-URL** (`https://oxyd22.github.io/ai-kalorien/`) leitet per Meta-Refresh/JS weiter.
 
 Kein Account. Keine Tracker-Cloud. Nur Orientierungshilfe — keine Ernährungsberatung.
 
