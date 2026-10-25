@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Projektseite AI Kalorien (DE)
+    url: https://daniel-riewe.dev/projekte/ai-kalorien/
+    about: Installation, Anleitung und häufige Fragen.
+  - name: AI Calories project page (EN)
+    url: https://daniel-riewe.dev/en/projects/ai-kalorien/
+    about: Install, how-to and FAQ.
