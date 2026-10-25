@@ -9,3 +9,9 @@ Kostenloser iOS-/macOS-Kurzbefehl: Foto, Text, Barcode oder Etikett → kcal & M
 Kein Account. Keine Tracker-Cloud. Nur Orientierungshilfe — keine Ernährungsberatung.
 
 Autor: Daniel Riewe ([@Oxyd22](https://github.com/Oxyd22))
+
+## Probleme / Support
+
+Fehler gefunden? Bitte hier melden: https://github.com/Oxyd22/ai-kalorien/issues/new/choose — keine persönlichen Daten oder API-Keys posten.
+
+**Issues (EN):** Found a bug? Report it at https://github.com/Oxyd22/ai-kalorien/issues/new/choose — please don't post personal data or API keys.

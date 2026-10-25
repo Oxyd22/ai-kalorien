@@ -1,0 +1,51 @@
+name: Fehler melden (Deutsch)
+description: Etwas am Kurzbefehl AI Kalorien funktioniert nicht wie erwartet.
+title: "[Fehler] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke fürs Melden! **Bitte keine persönlichen Daten, Gesundheitswerte oder API-Keys posten** – auch nicht in Screenshots.
+  - type: input
+    id: ios
+    attributes:
+      label: iOS-/iPadOS-/macOS-Version
+      placeholder: "z. B. iOS 26.0.1"
+    validations:
+      required: true
+  - type: input
+    id: shortcut
+    attributes:
+      label: Kurzbefehl-Version
+      description: Steht im Kurzbefehl bzw. beim Download (z. B. v3, v3 US).
+      placeholder: "z. B. v3"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Gerät
+      placeholder: "z. B. iPhone 16 Pro"
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: Was ist passiert?
+      description: Schritte, Eingabe (Foto/Text/Barcode/Etikett) und ggf. Fehlermeldung.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Was hast du erwartet?
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Optional. Bild hier hineinziehen. Vorher API-Keys und persönliche Daten schwärzen.
+    validations:
+      required: false

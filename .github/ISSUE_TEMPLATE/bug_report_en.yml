@@ -1,0 +1,51 @@
+name: Bug report (English)
+description: Something in the AI Calories shortcut doesn't work as expected.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Please don't post personal data, health values or API keys** – not in screenshots either.
+  - type: input
+    id: ios
+    attributes:
+      label: iOS / iPadOS / macOS version
+      placeholder: "e.g. iOS 26.0.1"
+    validations:
+      required: true
+  - type: input
+    id: shortcut
+    attributes:
+      label: Shortcut version
+      description: Shown in the shortcut or on the download (e.g. v3, v3 US).
+      placeholder: "e.g. v3 US"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      placeholder: "e.g. iPhone 16 Pro"
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Steps, input (photo/text/barcode/label) and any error message.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Optional. Drag an image here. Redact API keys and personal data first.
+    validations:
+      required: false
